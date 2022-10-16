@@ -40,7 +40,7 @@
             <div class="col-md-4">
                 <div class="withdraw status">
                     <h5>withdraw</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="carrntWidth">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
@@ -96,18 +96,22 @@
         })
 
         //add withdraw deposit
-        const addWithdraw = document.getElementById("withdrawBtn");
-        addWithdraw.addEventListener("click", function(){
-           const withdrawNumber = getInputNumber("withdrawAmount");
-           console.log(withdrawNumber);
+        const widthBtn = document.getElementById("withdrawBtn");
+        widthBtn.addEventListener('click', function(){
+            const widthNumber = getInputNumber("withdrawAmount");
+            updateText("carrntWidth", widthNumber);
+            document.getElementById("withdrawAmount").value = "";
+
+            updateText("currentBalance", -1 * widthNumber);
         })
 
         function getInputNumber (id){
-            const Amount = document.getElementById(id).value;
-            const amountNumber = parseFloat(Amount);
-            return amountNumber;
+            const withdrawAmount = document.getElementById(id).value;
+            const widthNumber = parseFloat(withdrawAmount);
+            return widthNumber;
         }
 
+        // depositBtn handler
         function updateText(id, depositNumber){
             const caurrent = document.getElementById(id).innerText;
             const caurrentNumber = parseFloat(caurrent);
